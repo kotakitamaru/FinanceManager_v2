@@ -1,0 +1,63 @@
+{
+  "entryFile": "src/app.ts",
+  "noImplicitAdditionalProperties": "throw-on-extras",
+  "controllerPathGlobs": ["src/controllers/**/*Controller.ts"],
+  "spec": {
+    "outputDirectory": "dist",
+    "specVersion": 3,
+    "name": "Finance Manager API",
+    "description": "API for Finance Manager application",
+    "version": "1.0.0",
+    "basePath": "/api",
+    "host": "localhost:3000",
+    "schemes": ["http", "https"],
+    "tags": [
+      {
+        "name": "Health",
+        "description": "Health check endpoints"
+      },
+      {
+        "name": "Users",
+        "description": "User management endpoints"
+      },
+      {
+        "name": "Transactions",
+        "description": "Transaction management endpoints"
+      },
+      {
+        "name": "Categories",
+        "description": "Category management endpoints"
+      }
+    ],
+    "securityDefinitions": {
+      "bearer": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  },
+  "routes": {
+    "routesDir": "src/routes",
+    "middleware": "express",
+    "authenticationModule": "src/middleware/authentication.ts",
+    "basePath": "/api",
+    "routesFileName": "routes.generated.ts"
+  },
+  "compilerOptions": {
+    "baseUrl": "./",
+    "paths": {
+      "@/*": ["src/*"],
+      "@/controllers/*": ["src/controllers/*"],
+      "@/services/*": ["src/services/*"],
+      "@/repositories/*": ["src/repositories/*"],
+      "@/models/*": ["src/models/*"],
+      "@/config/*": ["src/config/*"],
+      "@/middleware/*": ["src/middleware/*"],
+      "@/types/*": ["src/types/*"],
+      "@/utils/*": ["src/utils/*"],
+      "@/validators/*": ["src/validators/*"],
+      "@/database/*": ["src/database/*"]
+    }
+  }
+}

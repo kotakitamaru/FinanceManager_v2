@@ -1,0 +1,25 @@
+.login-form{
+    border: 1px solid rgba(200,200,200,0.5);
+    box-shadow: 0 0 10px rgba(0,0,0,0.2);
+    display: flex;
+    flex-direction: column;
+    width: 300px;
+    border-radius: 15px;
+    padding: 20px;
+    justify-content: Space-between;
+}
+
+.auth-bottom-text{
+    text-align: center;
+    margin-top: 10px;
+}
+
+.text-muted{
+    color: grey;
+    font-size: 0.8rem;
+}
+
+a {
+    color: #030213;
+    text-decoration: none;
+}

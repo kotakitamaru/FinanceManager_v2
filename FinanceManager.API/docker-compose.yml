@@ -1,0 +1,42 @@
+version: "3.9"
+
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: finance_manager
+      POSTGRES_USER: dbuser
+      POSTGRES_PASSWORD: 12345
+      TZ: UTC
+    ports:
+      - "5432:5432" # remove this line if you don't need host access
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+    # Optional: basic tuning flags (adjust to your server)
+    # command: ["postgres", "-c", "shared_buffers=256MB", "-c", "max_connections=200"]
+
+  api:
+    build: .
+    container_name: finance_manager.api
+    restart: unless-stopped
+    env_file:
+      - docker.env
+    depends_on:
+      db:
+        condition: service_healthy
+    ports:
+      - "3000:3000"   # host:container (adjust if your app uses a different port)
+    # For production, keep the image read-only and drop privileges if you like:
+    # read_only: true
+    # security_opt:
+    #   - no-new-privileges:true
+
+volumes:
+  postgres-data:

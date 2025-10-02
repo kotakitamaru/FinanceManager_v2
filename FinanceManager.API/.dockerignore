@@ -1,0 +1,21 @@
+node_modules
+dist
+coverage
+build
+.tmp
+.tmp*
+.cache
+
+# VCS
+.git
+.gitignore
+
+# Env and logs
+.env
+.env.*
+npm-debug.log*
+yarn-error.log*
+
+# Docker files (not needed inside build context)
+Dockerfile
+.dockerignore
