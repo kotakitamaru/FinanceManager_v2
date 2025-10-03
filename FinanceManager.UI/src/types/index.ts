@@ -6,3 +6,4 @@ export * from './category';
 export * from './api';
 export * from './common';
 export * from './navbar';
+export * from './carousel';

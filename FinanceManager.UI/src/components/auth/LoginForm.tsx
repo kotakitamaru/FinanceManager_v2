@@ -56,24 +56,25 @@ export const LoginForm = () => {
     const isFormDisabled = isLoading || isSubmitting;
 
     return (
-        <div className="login-form">
-            <div>
-                <label>Sign In</label><br/>
-                <span className="text-muted">Enter your email and password to access your account</span>
+        <div className={`auth-form ${isFormDisabled ? 'auth-form__loading' : ''}`}>
+            <div className="auth-form__header">
+                <h1 className="auth-form__title">Welcome back</h1>
+                <p className="auth-form__subtitle">Sign in to your finance account</p>
             </div>
             
             {error && (
-                <div className="error-message text-red-500 text-sm mb-4 p-2 bg-red-50 rounded">
-                    {error}
+                <div className="auth-form__error">
+                    <span className="auth-form__error-icon">⚠</span>
+                    <p className="auth-form__error-text">{error}</p>
                 </div>
             )}
             
-            <form onSubmit={handleSubmit} noValidate>
+            <form onSubmit={handleSubmit} noValidate className="auth-form__form">
                 <Input 
                     label="Email" 
                     name="email"
                     type="email"
-                    placeholder='Enter your email'
+                    placeholder="Enter your email"
                     value={formData.email}
                     onChange={handleInputChange}
                     error={errors.email}
@@ -86,7 +87,7 @@ export const LoginForm = () => {
                     label="Password" 
                     name="password"
                     type="password"
-                    placeholder='Enter your password'
+                    placeholder="Enter your password"
                     value={formData.password}
                     onChange={handleInputChange}
                     error={errors.password}
@@ -95,19 +96,28 @@ export const LoginForm = () => {
                     required
                 />
                 
-                <Button 
-                    type="submit" 
-                    disabled={isFormDisabled}
-                    className={isFormDisabled ? 'opacity-50 cursor-not-allowed' : ''}
-                    aria-label={isSubmitting ? 'Signing in...' : 'Sign in'}
-                >
-                    {isSubmitting ? 'Signing in...' : 'Sign in'}
-                </Button>
+                <div className="auth-form__actions">
+                    <Button 
+                        type="submit" 
+                        disabled={isFormDisabled}
+                        loading={isSubmitting}
+                        fullWidth
+                        className="auth-form__button"
+                        aria-label={isSubmitting ? 'Signing in...' : 'Sign in'}
+                    >
+                        {isSubmitting ? 'Signing in...' : 'Sign in'}
+                    </Button>
+                </div>
             </form>
             
-            <span className="auth-bottom-text text-muted">
-                Don't have an account? <Link to='/register'>Sign up</Link>
-            </span>
+            <div className="auth-form__bottom">
+                <p className="auth-form__bottom-text">
+                    Don't have an account?{' '}
+                    <Link to="/register" className="auth-form__link">
+                        Sign up
+                    </Link>
+                </p>
+            </div>
         </div>
     );
 };

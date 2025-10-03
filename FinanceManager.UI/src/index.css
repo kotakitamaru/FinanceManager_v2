@@ -9,8 +9,18 @@
 }
 
 /* Ensure all text elements use JetBrains Mono */
-body {
+html, body {
   font-family: 'JetBrains Mono', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow-x: hidden;
+  background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+  background-attachment: fixed;
+}
+
+#root {
+  min-height: 100vh;
 }

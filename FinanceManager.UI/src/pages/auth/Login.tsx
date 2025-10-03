@@ -1,15 +1,14 @@
 import React from 'react';
 import './Auth.css';
-import {LoginForm} from "@components/auth/LoginForm.tsx";
+import { LoginForm } from "@components/auth/LoginForm";
 
 const Login: React.FC = () => {
   return (
-    <div className={"auth-container"}>
-        <div className={"auth-header"}>
-            <h1>Welcome back</h1>
-            <h2>Sign in to your finance account</h2>
-        </div>
+    <div className="auth-page">
+      <div className="auth-container">
         <LoginForm />
+      </div>
+      
     </div>
   );
 };
