@@ -1,0 +1,217 @@
+:root{
+    --category-color: #030213;
+}
+
+
+.category-card {
+  display: flex;
+  align-items: center;
+  padding: 1rem 1.5rem;
+  background: transparent;
+  border: 1px solid rgba(200, 200, 200, 0.5);
+  border-left: 4px solid var(--category-color, #030213);
+  border-radius: 15px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.15s ease;
+  min-height: 80px;
+  gap: 1rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.category-card::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4px;
+  height: 100%;
+  background: var(--category-color, #e5e7eb);
+  transition: width 0.15s ease-in-out;
+  z-index: 2;
+}
+
+.category-card__background {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: linear-gradient(
+    135deg,
+    var(--category-color, #030213) 0%,
+    color-mix(in srgb, var(--category-color, #030213) 70%, #000000) 100%
+  );
+  opacity: 0.1;
+  transition: all 0.15s ease;
+  z-index: 1;
+}
+
+.category-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
+  border-color: var(--category-color, #030213);
+}
+
+.category-card:hover .category-card__background {
+  background: linear-gradient(
+    135deg,
+    var(--category-color, #030213) 0%,
+    color-mix(in srgb, var(--category-color, #030213) 50%, #000000) 100%
+  );
+  opacity: 0.2;
+}
+
+.category-card:hover::before {
+  width: 6px;
+}
+
+.category-card:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(119, 119, 119, 0.3);
+  border-color: var(--category-color, #030213);
+}
+
+.category-card:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+}
+
+.category-card__icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: var(--category-color, #030213);
+  border-radius: 12px;
+  flex-shrink: 0;
+  transition: all 0.15s ease;
+  position: relative;
+  z-index: 3;
+}
+
+.category-card:hover .category-card__icon {
+  transform: scale(1.1);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.category-card__icon-symbol {
+  font-size: 1.5rem;
+  color: white;
+  font-weight: bold;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.category-card__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.25rem;
+  min-width: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.category-card__title {
+  font-size: 1.125rem;
+  font-weight: 600;
+  color: #1f2937;
+  margin: 0;
+  line-height: 1.4;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.category-card__amount {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--category-color, #030213);
+  margin: 0;
+  line-height: 1.2;
+}
+
+.category-card__arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  color: #666;
+  font-size: 1.25rem;
+  font-weight: bold;
+  transition: all 0.15s ease;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 3;
+}
+
+.category-card:hover .category-card__arrow {
+  color: var(--category-color, #030213);
+  transform: translateX(4px);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .category-card {
+    padding: 0.875rem 1.25rem;
+    min-height: 70px;
+    gap: 0.875rem;
+  }
+  
+  .category-card__icon {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .category-card__icon-symbol {
+    font-size: 1.375rem;
+  }
+  
+  .category-card__title {
+    font-size: 1.0625rem;
+  }
+  
+  .category-card__amount {
+    font-size: 1.1875rem;
+  }
+  
+  .category-card__arrow {
+    width: 22px;
+    height: 22px;
+    font-size: 1.125rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .category-card {
+    padding: 0.875rem 1rem;
+    min-height: 40px;
+    gap: 0.75rem;
+  }
+  
+  .category-card__icon {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .category-card__icon-symbol {
+    font-size: 1.25rem;
+  }
+  
+  .category-card__title {
+    font-size: 1rem;
+  }
+  
+  .category-card__amount {
+    font-size: 1.125rem;
+  }
+  
+  .category-card__arrow {
+    width: 20px;
+    height: 20px;
+    font-size: 1rem;
+  }
+}

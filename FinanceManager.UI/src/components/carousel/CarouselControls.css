@@ -1,0 +1,96 @@
+.carousel-controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.5rem;
+}
+
+.carousel-controls__button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 48px;
+  height: 48px;
+  background: white;
+  border: 2px solid #e5e7eb;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  color: #374151;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-controls__button:hover:not(.carousel-controls__button--disabled) {
+  background: #f9fafb;
+  border-color: #d1d5db;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+.carousel-controls__button:active:not(.carousel-controls__button--disabled) {
+  transform: translateY(0);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-controls__button:focus {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.3);
+}
+
+.carousel-controls__button--disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  background: #f3f4f6;
+  border-color: #e5e7eb;
+  color: #9ca3af;
+}
+
+.carousel-controls__button--disabled:hover {
+  transform: none;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.carousel-controls__button svg {
+  transition: transform 0.2s ease;
+}
+
+.carousel-controls__button:hover:not(.carousel-controls__button--disabled) svg {
+  transform: scale(1.1);
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .carousel-controls {
+    gap: 0.75rem;
+    margin-top: 1.25rem;
+  }
+  
+  .carousel-controls__button {
+    width: 44px;
+    height: 44px;
+  }
+  
+  .carousel-controls__button svg {
+    width: 18px;
+    height: 18px;
+  }
+}
+
+@media (max-width: 640px) {
+  .carousel-controls {
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+  
+  .carousel-controls__button {
+    width: 40px;
+    height: 40px;
+  }
+  
+  .carousel-controls__button svg {
+    width: 16px;
+    height: 16px;
+  }
+}
+
