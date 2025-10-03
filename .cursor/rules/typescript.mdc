@@ -26,6 +26,13 @@ globs: **/*.ts, **/*.tsx, **/*.d.ts
 - Use barrel exports (index.ts) for organizing exports
 - Place shared types in a `types` directory
 - Co-locate component props with their components
+- Always use `import type` for importing types and interfaces
+- **Always use alias paths for imports instead of relative paths**
+- Configure alias paths in tsconfig.json for consistent imports
+- Use `@/` prefix for root-level imports, `@components/` for components, etc.
+- **Keep components minimal - extract utility functions to separate files**
+- **Create utility functions in `utils/` directory for reusable logic**
+- **Avoid business logic in components - use services and utilities**
 
 ## Functions
 - Use explicit return types for public functions

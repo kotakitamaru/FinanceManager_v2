@@ -1,10 +1,10 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
-import { Input } from '../common/Input.tsx';
-import { Button } from "@components/common/Button.tsx";
-import { Link } from "react-router-dom";
-import { useAuth } from '@contexts/AuthContext.tsx';
+import { Input } from '@components/common/Input';
+import { Button } from '@components/common/Button';
+import { Link } from 'react-router-dom';
+import { useAuth } from '@contexts/AuthContext';
 import { ROUTES } from '@/constants';
 
 export const LoginForm = () => {
@@ -44,7 +44,7 @@ export const LoginForm = () => {
             // Reset form on successful login
             setFormData({ email: '', password: '' });
             setErrors({});
-            navigate(ROUTES.DASHBOARD);
+            navigate(ROUTES.HOME);
         } catch (error) {
             // Error is handled by AuthContext
             console.error('Login failed:', error);

@@ -1,11 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Auth.css';
-import { Input } from '../common/Input.tsx';
-import { Button } from "@components/common/Button.tsx";
-import { Link } from "react-router-dom";
-import { useAuth } from '@contexts/AuthContext.tsx';
-import { validateEmail, validatePassword, validatePasswordConfirmation, validateName } from '../../utils/validation';
+import { Input } from '@components/common/Input';
+import { Button } from '@components/common/Button';
+import { Link } from 'react-router-dom';
+import { useAuth } from '@contexts/AuthContext';
+import { validateEmail, validatePassword, validatePasswordConfirmation, validateName } from '@utils/validation';
 import { ROUTES } from '@/constants';
 
 export const RegisterForm = () => {
@@ -82,7 +82,7 @@ export const RegisterForm = () => {
             // Reset form on successful registration
             setFormData({ name: '', email: '', password: '', confirmPassword: '' });
             setErrors({});
-            navigate(ROUTES.DASHBOARD);
+            navigate(ROUTES.HOME);
         } catch (error) {
             // Error is handled by AuthContext
             console.error('Registration failed:', error);

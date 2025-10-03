@@ -1,20 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import type { ReactNode } from 'react';
 import Header from './Header';
-import Sidebar from './Sidebar';
-import Dashboard from '../../pages/Dashboard';
+import { FooterNavbar } from './navbar';
 
-const MainAppLayout: React.FC = () => {
-  const [sidebarOpen, setSidebarOpen] = useState(false);
+interface MainAppLayoutProps {
+  children: ReactNode;
+}
 
+const MainAppLayout: React.FC<MainAppLayoutProps> = ({ children }) => {
   return (
     <div className="min-h-screen bg-gray-50">
       <Header />
       <div className="flex">
-        <Sidebar isOpen={sidebarOpen} onClose={() => setSidebarOpen(false)} />
-        <main className="flex-1 lg:ml-64">
-          <Dashboard />
+        <main className="flex-1 lg:ml-64 pb-20">
+          {children}
         </main>
       </div>
+      <FooterNavbar />
     </div>
   );
 };

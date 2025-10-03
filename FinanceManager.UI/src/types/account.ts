@@ -1,25 +1,29 @@
 // Account-related types
 export interface Account {
-  id: string;
-  userId: string;
-  name: string;
-  isIncome: boolean;
+  id: number;
+  title: string;
+  icon: string;
+  color: string;
   balance: number;
-  currency: string;
-  createdAt: string;
-  updatedAt: string;
+  createDate: string;
+  updateDate: string;
 }
 
 export interface CreateAccountRequest {
-  name: string;
-  isIncome: boolean;
-  balance: number;
-  currency: string;
+  title: string;
+  icon: string;
+  color: string;
 }
 
 export interface UpdateAccountRequest {
-  name?: string;
-  isIncome?: boolean;
-  balance?: number;
-  currency?: string;
+  title?: string;
+  icon?: string;
+  color?: string;
+}
+
+export interface AccountListResponse {
+  accounts: Account[];
+  total: number;
+  page: number;
+  limit: number;
 }

@@ -67,6 +67,10 @@ export class AccountResponse {
   color!: string;
 
   @Expose()
+  @IsNumber()
+  balance!: number;
+
+  @Expose()
   @IsDate()
   createDate!: Date;
 

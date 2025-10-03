@@ -1,4 +1,4 @@
-import type { User } from '../../types/user';
+import type {User} from '@/types/user';
 
 class TokenService {
   private readonly TOKEN_KEY = 'authToken';
@@ -34,12 +34,11 @@ class TokenService {
   /**
    * Parse JWT token payload
    */
-  private parseTokenPayload(token: string): any {
+  private parseTokenPayload(token: string) {
     try {
-      const payload = JSON.parse(atob(token.split('.')[1]));
-      return payload;
+        return JSON.parse(atob(token.split('.')[1]));
     } catch (error) {
-      throw new Error('Invalid token format');
+      throw new Error('Invalid token format: ' + error);
     }
   }
 

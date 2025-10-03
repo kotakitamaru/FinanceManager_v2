@@ -1,5 +1,5 @@
-import { apiService } from '../api';
-import type { LoginRequest, AuthResponse, CreateUserRequest } from '../../types/user';
+import { apiService } from '@services/api';
+import type { LoginRequest, AuthResponse, CreateUserRequest } from '@/types/user';
 
 class AuthService {
   /**

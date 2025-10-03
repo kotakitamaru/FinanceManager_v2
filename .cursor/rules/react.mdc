@@ -12,6 +12,9 @@ globs: **/*.tsx, **/*.jsx, components/**/*
 - Use composition over inheritance
 - Implement proper prop types with TypeScript
 - Split large components into smaller, focused ones
+- **Keep components minimal - extract utility functions to separate files**
+- **Avoid business logic in components - use services and utilities**
+- **Create utility functions in `utils/` directory for reusable logic**
 
 ## Hooks
 - Follow the Rules of Hooks

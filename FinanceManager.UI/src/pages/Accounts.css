@@ -1,0 +1,58 @@
+.accounts-page {
+  padding: 2rem;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.accounts-page__header {
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.accounts-page__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #1f2937;
+  margin: 0 0 0.5rem 0;
+  line-height: 1.2;
+}
+
+.accounts-page__subtitle {
+  font-size: 1.125rem;
+  color: #6b7280;
+  margin: 0;
+  line-height: 1.5;
+}
+
+.accounts-page__content {
+  width: 100%;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .accounts-page {
+    padding: 1rem;
+  }
+  
+  .accounts-page__title {
+    font-size: 2rem;
+  }
+  
+  .accounts-page__subtitle {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 640px) {
+  .accounts-page {
+    padding: 0.75rem;
+  }
+  
+  .accounts-page__title {
+    font-size: 1.75rem;
+  }
+  
+  .accounts-page__subtitle {
+    font-size: 0.875rem;
+  }
+}

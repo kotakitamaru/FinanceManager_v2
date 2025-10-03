@@ -8,7 +8,7 @@ type Ctx = {
 export const up: MigrationFn<Ctx> = async ({ context: { queryInterface } }) => {
   await queryInterface.createTable('categories', {
     id: {type: DataTypes.INTEGER, primaryKey: true, autoIncrement: true},
-    title: {type: DataTypes.STRING, allowNull: false, unique: true},
+    title: {type: DataTypes.STRING, allowNull: false},
     icon: {type: DataTypes.STRING, allowNull: false},
     is_income: {type: DataTypes.BOOLEAN, allowNull: false},
     color: {type: DataTypes.STRING, allowNull: false},

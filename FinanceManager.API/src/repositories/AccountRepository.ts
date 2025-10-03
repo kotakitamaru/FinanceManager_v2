@@ -19,11 +19,11 @@ export class AccountRepository extends BaseRepository {
     const params: any[] = [];
 
     if (typeof userId === 'number') {
-      whereClause = 'WHERE user_id = $1';
+      whereClause = 'WHERE a.user_id = $1';
       params.push(userId);
     }
 
-    const countQuery = `SELECT COUNT(*) FROM accounts ${whereClause}`;
+    const countQuery = `SELECT COUNT(*) FROM accounts a ${whereClause}`;
     const totalResult = await conn.query(countQuery, { 
       bind: params,
       type: QueryTypes.SELECT
@@ -31,14 +31,19 @@ export class AccountRepository extends BaseRepository {
     const total = parseInt((totalResult[0] as any).count);
 
     const query = `
-      SELECT id,
-             title,
-             icon,
-             color,
-             create_date as "createDate",
-             update_date as "updateDate"
-      FROM accounts ${whereClause}
-      ORDER BY id ASC LIMIT $${params.length + 1} OFFSET $${params.length + 2}
+      SELECT a.id,
+             a.title,
+             a.icon,
+             a.color,
+             a.create_date as "createDate",
+             a.update_date as "updateDate",
+             COALESCE(SUM(t.amount * CASE WHEN c.is_income = true THEN 1 ELSE -1 END), 0) as balance
+      FROM accounts a
+      LEFT JOIN transactions t ON a.id = t.account_id
+      LEFT JOIN categories c ON t.category_id = c.id
+      ${whereClause}
+      GROUP BY a.id, a.title, a.icon, a.color, a.create_date, a.update_date
+      ORDER BY a.id ASC LIMIT $${params.length + 1} OFFSET $${params.length + 2}
     `;
 
     const result = await conn.query(query, {
@@ -59,18 +64,23 @@ export class AccountRepository extends BaseRepository {
     const params: any[] = [id];
 
     if (typeof userId === 'number') {
-      whereClause += ' AND user_id = $2';
+      whereClause += ' AND a.user_id = $2';
       params.push(userId);
     }
 
     const query = `
-      SELECT id,
-             title,
-             icon,
-             color,
-             create_date as "createDate",
-             update_date as "updateDate"
-      FROM accounts ${whereClause}`;
+      SELECT a.id,
+             a.title,
+             a.icon,
+             a.color,
+             a.create_date as "createDate",
+             a.update_date as "updateDate",
+             COALESCE(SUM(t.amount * CASE WHEN c.is_income = true THEN 1 ELSE -1 END), 0) as balance
+      FROM accounts a
+      LEFT JOIN transactions t ON a.id = t.account_id
+      LEFT JOIN categories c ON t.category_id = c.id
+      ${whereClause}
+      GROUP BY a.id, a.title, a.icon, a.color, a.create_date, a.update_date`;
 
     const result = await conn.query(query, {
       bind: params,

@@ -1,8 +1,8 @@
 // Authentication context for managing user state
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import type { ReactNode } from 'react';
-import type { User } from '../types/user';
-import { authService, tokenService } from '../services/auth';
+import type { User } from '@/types/user';
+import { authService, tokenService } from '@services/auth';
 
 interface AuthContextType {
   user: User | null;

@@ -5,8 +5,8 @@ export const ROUTES = {
   HOME: '/',
   LOGIN: '/login',
   REGISTER: '/register',
-  DASHBOARD: '/dashboard',
   TRANSACTIONS: '/transactions',
   ACCOUNTS: '/accounts',
   CATEGORIES: '/categories',
+  STATS: '/stats',
 } as const;
