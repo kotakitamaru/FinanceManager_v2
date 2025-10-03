@@ -26,9 +26,8 @@ const Categories: React.FC = () => {
     fetchCategories();
   }, []);
 
-  const handleCategoryClick = (category: Category) => {
+  const handleCategoryClick = (_category: Category) => {
     // Placeholder for category click functionality
-    console.log('Category clicked:', category);
     // TODO: Navigate to category details or perform category-specific action
   };
 

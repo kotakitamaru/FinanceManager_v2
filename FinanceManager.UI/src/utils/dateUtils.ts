@@ -8,8 +8,7 @@ export const formatDate = (date: string | Date, formatString: string = 'MMM dd, 
       return 'Invalid Date';
     }
     return format(dateObj, formatString);
-  } catch (error) {
-    console.error('Error formatting date:', error);
+  } catch {
     return 'Invalid Date';
   }
 };
@@ -47,8 +46,7 @@ export const isDateInRange = (date: string | Date, startDate: Date, endDate: Dat
       return false;
     }
     return dateObj >= startDate && dateObj <= endDate;
-  } catch (error) {
-    console.error('Error checking date range:', error);
+  } catch {
     return false;
   }
 };

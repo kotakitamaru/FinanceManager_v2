@@ -15,6 +15,7 @@ export interface AccountCardProps {
 export interface AccountCarouselProps {
   accounts: Account[];
   onAccountClick?: (account: Account) => void;
+  onAccountSelectionChange?: (account: Account) => void;
   className?: string;
   showControls?: boolean;
   showDots?: boolean;

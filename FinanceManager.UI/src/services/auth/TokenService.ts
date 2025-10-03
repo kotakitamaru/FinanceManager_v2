@@ -50,7 +50,7 @@ class TokenService {
       const payload = this.parseTokenPayload(token);
       const currentTime = Date.now() / 1000;
       return payload.exp && payload.exp <= currentTime;
-    } catch (error) {
+    } catch {
       return true; // Consider malformed tokens as expired
     }
   }
@@ -85,7 +85,7 @@ class TokenService {
       }
 
       return this.getUserFromToken(token);
-    } catch (error) {
+    } catch {
       // Token is malformed, remove it
       this.removeToken();
       return null;

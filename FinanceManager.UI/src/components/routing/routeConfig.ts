@@ -1,8 +1,8 @@
 import React from 'react';
 import type { ReactNode } from 'react';
 import { ROUTES } from '@/constants';
-import Home from '@pages/Home';
-import Categories from '@pages/Categories';
+import Home from '@/pages/Home';
+import Categories from '@/pages/Categories';
 import Transactions from '@pages/Transactions';
 import Stats from '@pages/Stats';
 

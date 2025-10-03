@@ -8,4 +8,5 @@ BEHAVIOR:
 CONSTRAINTS:
 - Do not invent details; store exactly what the user typed as the task content.
 - Keep confirmation concise; no extra commentary.
-Use @.ai/templates/task_template.md as a template and modify it to explain all changes that are necessary to complete this task.  Do not make any code changes, create a new Task document first so I can review it
+- Use @.cursor/templates/task_template.md as a template and modify it to explain all changes that are necessary to complete this task.  Do not make any code changes, create a new Task document first so I can review it
+- Save task to @.cursor/tasks/ folder

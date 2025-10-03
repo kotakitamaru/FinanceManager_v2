@@ -1,4 +1,3 @@
-import React from 'react';
 import type { CarouselDotsProps } from '@/types/carousel';
 import './CarouselDots.css';
 

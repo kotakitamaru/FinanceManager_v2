@@ -1,6 +1,6 @@
 .home-page {
   min-height: 100%;
-  padding: 2rem 1rem;
+  padding: 2rem 1rem 7rem 1rem; /* Added bottom padding to prevent footer overlap */
 }
 
 .home-content {
@@ -9,6 +9,16 @@
 }
 
 .home-header {
+  text-align: center;
+  position: relative;
+}
+
+.home-header__content {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.home-header__text {
   text-align: center;
 }
 
@@ -30,8 +40,18 @@
   font-weight: 500;
 }
 
+
+
 .home-carousel {
   margin-top: 0.5rem;
+  position: relative;
+}
+
+.home-transactions {
+  margin-top: 2rem;
+  padding-top: 1.5rem;
+  border-top: 1px solid #e2e8f0;
+  position: relative;
 }
 
 /* Loading State */
@@ -157,7 +177,7 @@
 /* Responsive Design */
 @media (max-width: 768px) {
   .home-page {
-    padding: 1.5rem 0.75rem;
+    padding: 1.5rem 0.75rem 6rem 0.75rem; /* Added bottom padding */
   }
   
   .home-title {
@@ -172,8 +192,15 @@
     margin-bottom: 1rem;
   }
   
+
+  
   .home-carousel {
     margin-top: 0.25rem;
+  }
+  
+  .home-transactions {
+    margin-top: 1.5rem;
+    padding-top: 1.25rem;
   }
   
   .home-error__title,
@@ -189,7 +216,7 @@
 
 @media (max-width: 640px) {
   .home-page {
-    padding: 1rem 0.5rem;
+    padding: 1rem 0.5rem 5.5rem 0.5rem; /* Added bottom padding */
   }
   
   .home-title {
@@ -204,8 +231,15 @@
     margin-bottom: 0.75rem;
   }
   
+
+  
   .home-carousel {
     margin-top: 0.25rem;
+  }
+  
+  .home-transactions {
+    margin-top: 1.25rem;
+    padding-top: 1rem;
   }
   
   .home-error__icon,

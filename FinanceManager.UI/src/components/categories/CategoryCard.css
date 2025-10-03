@@ -1,6 +1,4 @@
-:root{
-    --category-color: #030213;
-}
+/* CSS variables are now imported from styles/variables.css */
 
 
 .category-card {

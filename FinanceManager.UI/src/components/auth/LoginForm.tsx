@@ -45,9 +45,8 @@ export const LoginForm = () => {
             setFormData({ email: '', password: '' });
             setErrors({});
             navigate(ROUTES.HOME);
-        } catch (error) {
+        } catch {
             // Error is handled by AuthContext
-            console.error('Login failed:', error);
         } finally {
             setIsSubmitting(false);
         }

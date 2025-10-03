@@ -5,7 +5,7 @@ import { Input } from '@components/common/Input';
 import { Button } from '@components/common/Button';
 import { Link } from 'react-router-dom';
 import { useAuth } from '@contexts/AuthContext';
-import { validateEmail, validatePassword, validatePasswordConfirmation, validateName } from '@utils/validation';
+import { validateRegistrationForm } from '@/utils/formValidationUtils';
 import { ROUTES } from '@/constants';
 
 export const RegisterForm = () => {
@@ -38,30 +38,9 @@ export const RegisterForm = () => {
     };
 
     const validateForm = (): boolean => {
-        const newErrors: Record<string, string> = {};
-        
-        const nameValidation = validateName(formData.name);
-        if (!nameValidation.isValid) {
-            newErrors.name = nameValidation.error!;
-        }
-        
-        const emailValidation = validateEmail(formData.email);
-        if (!emailValidation.isValid) {
-            newErrors.email = emailValidation.error!;
-        }
-        
-        const passwordValidation = validatePassword(formData.password);
-        if (!passwordValidation.isValid) {
-            newErrors.password = passwordValidation.error!;
-        }
-        
-        const confirmPasswordValidation = validatePasswordConfirmation(formData.password, formData.confirmPassword);
-        if (!confirmPasswordValidation.isValid) {
-            newErrors.confirmPassword = confirmPasswordValidation.error!;
-        }
-        
-        setErrors(newErrors);
-        return Object.keys(newErrors).length === 0;
+        const validationResult = validateRegistrationForm(formData);
+        setErrors(validationResult.errors);
+        return validationResult.isValid;
     };
 
     const handleSubmit = async (e: React.FormEvent) => {
@@ -83,9 +62,8 @@ export const RegisterForm = () => {
             setFormData({ name: '', email: '', password: '', confirmPassword: '' });
             setErrors({});
             navigate(ROUTES.HOME);
-        } catch (error) {
+        } catch {
             // Error is handled by AuthContext
-            console.error('Registration failed:', error);
         } finally {
             setIsSubmitting(false);
         }

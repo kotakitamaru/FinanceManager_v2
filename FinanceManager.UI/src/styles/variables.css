@@ -1,0 +1,35 @@
+/**
+ * Centralized CSS variables for the Finance Manager application
+ * This file contains all color and design tokens used across components
+ */
+
+:root {
+  /* Primary Colors */
+  --color-background: #FFFFFF;
+  --color-text-primary: #1e293b;
+  --color-text-secondary: #64748b;
+  --color-border: #E2E8F0;
+  
+  /* Accent Colors */
+  --color-accent: #3B82F6;
+  --color-accent-hover: #2563EB;
+  
+  /* Transaction Colors */
+  --color-income: #10B981;
+  --color-expense: #EF4444;
+  
+  /* Status Colors */
+  --color-error: #EF4444;
+  --color-error-bg: #FEF2F2;
+  
+  /* Interactive Colors */
+  --color-hover: #F8FAFC;
+  --category-color: #64748b;
+  
+  /* Skeleton Colors */
+  --skeleton-color: #E2E8F0;
+  --skeleton-shimmer: #F1F5F9;
+  
+  /* Component-specific Colors */
+  --account-color: #030213;
+}

@@ -1,6 +1,4 @@
-:root {
-  --account-color: #030213;
-}
+/* CSS variables are now imported from styles/variables.css */
 
 .carousel-account-card {
   position: relative;

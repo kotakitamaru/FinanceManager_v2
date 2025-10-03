@@ -1,4 +1,3 @@
-import React from 'react';
 import type { CarouselControlsProps } from '@/types/carousel';
 import './CarouselControls.css';
 

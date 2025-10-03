@@ -1,4 +1,3 @@
-import React from 'react';
 import type { Category } from '@/types/category';
 import CategoryCard from './CategoryCard';
 import './CategoryList.css';

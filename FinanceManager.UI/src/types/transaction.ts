@@ -1,22 +1,23 @@
 // Transaction-related types
+import type { Category } from './category';
+
 export interface Transaction {
   id: string;
   accountId: string;
   categoryId: string;
-  amount: number;
-  description: string;
-  isIncome: boolean;
+  amount: number | string; // Can be number or string from API
+  note: string; // Changed from description to note
   date: string;
-  createdAt: string;
-  updatedAt: string;
+  createDate: string; // Changed from createdAt
+  updateDate: string; // Changed from updatedAt
+  category?: Category; // Optional category object with icon and color
 }
 
 export interface CreateTransactionRequest {
   accountId: string;
   categoryId: string;
   amount: number;
-  description: string;
-  isIncome: boolean;
+  note: string; // Changed from description to note
   date: string;
 }
 
@@ -24,8 +25,7 @@ export interface UpdateTransactionRequest {
   accountId?: string;
   categoryId?: string;
   amount?: number;
-  description?: string;
-  isIncome?: boolean;
+  note?: string;
   date?: string;
 }
 
@@ -37,4 +37,10 @@ export interface TransactionFilters {
   endDate?: string;
   page?: number;
   limit?: number;
+}
+
+export interface RecentTransactionsResponse {
+  transactions: Transaction[];
+  total: number;
+  accountId: string;
 }

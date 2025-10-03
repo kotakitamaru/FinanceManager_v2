@@ -16,6 +16,7 @@ import './AccountCarousel.css';
 const AccountCarousel: React.FC<AccountCarouselProps> = ({
   accounts,
   onAccountClick,
+  onAccountSelectionChange,
   className = '',
   showControls = DEFAULT_CAROUSEL_CONFIG.showControls,
   showDots = DEFAULT_CAROUSEL_CONFIG.showDots,
@@ -84,6 +85,16 @@ const AccountCarousel: React.FC<AccountCarouselProps> = ({
   useEffect(() => {
     setCurrentSlide(0);
   }, [accounts.length]);
+
+  // Notify parent when selected account changes
+  useEffect(() => {
+    if (accounts.length > 0 && onAccountSelectionChange) {
+      const selectedAccount = accounts[currentSlide];
+      if (selectedAccount) {
+        onAccountSelectionChange(selectedAccount);
+      }
+    }
+  }, [currentSlide, accounts, onAccountSelectionChange]);
 
   if (accounts.length === 0) {
     return (
