@@ -1,25 +1,25 @@
 // Category-related types
 export interface Category {
-  id: string;
-  userId: string;
-  name: string;
+  id: number;
+  title: string;
+  icon: string;
   isIncome: boolean;
   color: string;
-  icon: string;
+  amount: number;
   createdAt: string;
   updatedAt: string;
 }
 
 export interface CreateCategoryRequest {
-  name: string;
+  title: string;
+  icon: string;
   isIncome: boolean;
   color: string;
-  icon: string;
 }
 
 export interface UpdateCategoryRequest {
-  name?: string;
+  title?: string;
+  icon?: string;
   isIncome?: boolean;
   color?: string;
-  icon?: string;
 }

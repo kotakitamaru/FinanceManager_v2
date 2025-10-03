@@ -16,11 +16,11 @@ export class CategoryRepository extends BaseRepository {
 
     const conditions = [];
     if (typeof userId === 'number') {
-      conditions.push(`user_id = $${params.length + 1}`);
+      conditions.push(`c.user_id = $${params.length + 1}`);
       params.push(userId);
     }
     if (typeof isIncome === 'boolean') {
-      conditions.push(`is_income = $${params.length + 1}`);
+      conditions.push(`c.is_income = $${params.length + 1}`);
       params.push(isIncome);
     }
 
@@ -29,7 +29,7 @@ export class CategoryRepository extends BaseRepository {
     }
 
     const countQuery = `SELECT COUNT(*)
-                        FROM categories ${whereClause}`;
+                        FROM categories c ${whereClause}`;
     const totalResult = await conn.query(countQuery, { 
       bind: params,
       type: QueryTypes.SELECT
@@ -37,15 +37,19 @@ export class CategoryRepository extends BaseRepository {
     const total = parseInt((totalResult[0] as any).count);
 
     const query = `
-      SELECT id,
-             title,
-             is_income as "isIncome",
-             color,
-             icon,
-             created_at as "createdAt",
-             updated_at as "updatedAt"
-      FROM categories ${whereClause}
-      ORDER BY created_at DESC LIMIT $${params.length + 1}
+      SELECT c.id,
+             c.title,
+             c.is_income as "isIncome",
+             c.color,
+             c.icon,
+             c.created_at as "createdAt",
+             c.updated_at as "updatedAt",
+             COALESCE(SUM(t.amount * CASE WHEN c.is_income = true THEN 1 ELSE -1 END), 0) as amount
+      FROM categories c
+      LEFT JOIN transactions t ON c.id = t.category_id
+      ${whereClause}
+      GROUP BY c.id, c.title, c.is_income, c.color, c.icon, c.created_at, c.updated_at
+      ORDER BY c.created_at DESC LIMIT $${params.length + 1}
       OFFSET $${params.length + 2}
     `;
 
@@ -63,23 +67,27 @@ export class CategoryRepository extends BaseRepository {
   async findById(id: number, userId?: number): Promise<CategoryResponse | null> {
     const conn = getDatabaseConnection();
 
-    let whereClause = 'WHERE id = $1';
+    let whereClause = 'WHERE c.id = $1';
     const params: any[] = [id];
 
     if (typeof userId === 'number') {
-      whereClause += ' AND user_id = $2';
+      whereClause += ' AND c.user_id = $2';
       params.push(userId);
     }
 
     const query = `
-      SELECT id,
-             title,
-             is_income as "isIncome",
-             color,
-             icon,
-             created_at as "createdAt",
-             updated_at as "updatedAt"
-      FROM categories ${whereClause}`;
+      SELECT c.id,
+             c.title,
+             c.is_income as "isIncome",
+             c.color,
+             c.icon,
+             c.created_at as "createdAt",
+             c.updated_at as "updatedAt",
+             COALESCE(SUM(t.amount * CASE WHEN c.is_income = true THEN 1 ELSE -1 END), 0) as amount
+      FROM categories c
+      LEFT JOIN transactions t ON c.id = t.category_id
+      ${whereClause}
+      GROUP BY c.id, c.title, c.is_income, c.color, c.icon, c.created_at, c.updated_at`;
 
     const result = await conn.query(query, {
       bind: params,
@@ -106,7 +114,8 @@ export class CategoryRepository extends BaseRepository {
                 is_income as "isIncome",
                 color,
                 created_at as "createdAt",
-                updated_at as "updatedAt"`;
+                updated_at as "updatedAt",
+                0 as amount`;
 
     const result = await conn.query(query, {
       bind: [
@@ -173,7 +182,10 @@ export class CategoryRepository extends BaseRepository {
                 color,
                 icon,
                 created_at as "createdAt",
-                updated_at as "updatedAt"`;
+                updated_at as "updatedAt",
+                COALESCE((SELECT SUM(t.amount * CASE WHEN categories.is_income = true THEN 1 ELSE -1 END) 
+                         FROM transactions t 
+                         WHERE t.category_id = categories.id), 0) as amount`;
 
     const result = await conn.query(query, {
       bind: values,

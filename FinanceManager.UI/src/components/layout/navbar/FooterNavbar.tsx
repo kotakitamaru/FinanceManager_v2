@@ -17,10 +17,10 @@ const FooterNavbar: React.FC = () => {
       icon: '🏠'
     },
     {
-      id: 'accounts',
-      path: ROUTES.ACCOUNTS,
-      label: 'Accounts',
-      icon: '💳'
+      id: 'categories',
+      path: ROUTES.CATEGORIES,
+      label: 'Categories',
+      icon: '📂'
     },
     {
       id: 'transactions',

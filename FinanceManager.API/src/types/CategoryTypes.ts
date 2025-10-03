@@ -81,6 +81,10 @@ export class CategoryResponse {
   color!: string;
 
   @Expose()
+  @IsNumber()
+  amount!: number;
+
+  @Expose()
   @IsDate()
   createdAt!: Date;
 
