@@ -1,6 +1,20 @@
 // Transaction-related types
 import type { Category } from './category';
 
+// Sorting constants for consistent sort options
+export const SORT_FIELDS = {
+  DATE: 'date',
+  AMOUNT: 'amount'
+} as const;
+
+export const SORT_ORDERS = {
+  ASC: 'ASC',
+  DESC: 'DESC'
+} as const;
+
+export type SortField = typeof SORT_FIELDS[keyof typeof SORT_FIELDS];
+export type SortOrder = typeof SORT_ORDERS[keyof typeof SORT_ORDERS];
+
 export interface Transaction {
   id: string;
   accountId: string;
@@ -37,6 +51,8 @@ export interface TransactionFilters {
   endDate?: string;
   page?: number;
   limit?: number;
+  sortBy?: SortField;
+  sortOrder?: SortOrder;
 }
 
 export interface RecentTransactionsResponse {

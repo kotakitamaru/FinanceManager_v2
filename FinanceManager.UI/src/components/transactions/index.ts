@@ -2,6 +2,7 @@
 export { default as TransactionItem } from './TransactionItem';
 export { default as TransactionItemSkeleton } from './TransactionItemSkeleton';
 export { default as TransactionListHeader } from './TransactionListHeader';
+export { default as TransactionSortControls } from './TransactionSortControls';
 export { default as RecentTransactionsList } from './RecentTransactionsList';
 
 // Re-export types for convenience

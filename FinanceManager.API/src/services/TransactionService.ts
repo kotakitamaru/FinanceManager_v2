@@ -17,6 +17,8 @@ export class TransactionService extends BaseService {
     accountId?: number,
     startDate?: string,
     endDate?: string,
+    sortBy?: string,
+    sortOrder?: string,
     userId?: number
   ): Promise<{
     transactions: TransactionResponse[];
@@ -24,7 +26,7 @@ export class TransactionService extends BaseService {
     page: number;
     limit: number;
   }> {
-    const result = await this.transactionRepository.findAll(page, limit, categoryId, accountId, startDate, endDate, userId);
+    const result = await this.transactionRepository.findAll(page, limit, categoryId, accountId, startDate, endDate, sortBy, sortOrder, userId);
     return {
       ...result,
       page,

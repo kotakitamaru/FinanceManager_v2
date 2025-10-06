@@ -1,5 +1,5 @@
 import { apiService } from '@services/api';
-import type { Transaction, CreateTransactionRequest, UpdateTransactionRequest, TransactionFilters } from '@/types/transaction';
+import type { Transaction, CreateTransactionRequest, UpdateTransactionRequest, TransactionFilters, SortField, SortOrder } from '@/types/transaction';
 import type { PaginatedResponse } from '@/types/api';
 
 class TransactionService {
@@ -35,7 +35,7 @@ class TransactionService {
   }
 
   /**
-   * Fetch all transactions with optional filters
+   * Fetch all transactions with optional filters and sorting
    */
   async getTransactions(filters: TransactionFilters = {}): Promise<PaginatedResponse<Transaction>> {
     const queryParams = new URLSearchParams();
@@ -47,10 +47,40 @@ class TransactionService {
     if (filters.endDate) queryParams.append('endDate', filters.endDate);
     if (filters.page) queryParams.append('page', filters.page.toString());
     if (filters.limit) queryParams.append('limit', filters.limit.toString());
+    if (filters.sortBy) queryParams.append('sortBy', filters.sortBy);
+    if (filters.sortOrder) queryParams.append('sortOrder', filters.sortOrder);
 
     const url = `/transactions?${queryParams.toString()}`;
-    const response = await apiService.get<PaginatedResponse<Transaction>>(url);
-    return response.data;
+    const response = await apiService.get<{
+      transactions: Transaction[];
+      total: number;
+      page: number;
+      limit: number;
+    }>(url);
+    
+    // Transform backend response to frontend expected format
+    return {
+      data: response.data.transactions,
+      total: response.data.total,
+      page: response.data.page,
+      limit: response.data.limit,
+      totalPages: Math.ceil(response.data.total / response.data.limit)
+    };
+  }
+
+  /**
+   * Fetch transactions with specific sorting options
+   */
+  async getTransactionsSorted(
+    sortBy: SortField,
+    sortOrder: SortOrder = 'DESC',
+    filters: Omit<TransactionFilters, 'sortBy' | 'sortOrder'> = {}
+  ): Promise<PaginatedResponse<Transaction>> {
+    return this.getTransactions({
+      ...filters,
+      sortBy,
+      sortOrder
+    });
   }
 
   /**

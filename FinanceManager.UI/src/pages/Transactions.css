@@ -1,0 +1,319 @@
+/* Transactions page styles */
+.transactions-page {
+  min-height: 100vh;
+  background: var(--color-background);
+  padding: 1rem;
+}
+
+.transactions-page__container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Page Header */
+.transactions-page__header {
+  text-align: center;
+  padding: 2rem 0;
+  border-bottom: 1px solid var(--color-border);
+  margin-bottom: 1rem;
+}
+
+.transactions-page__title {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: var(--color-text-primary);
+  margin: 0 0 0.5rem 0;
+  background: linear-gradient(135deg, var(--color-primary), var(--color-secondary));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.transactions-page__subtitle {
+  font-size: 1.125rem;
+  color: var(--color-text-secondary);
+  margin: 0;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+  line-height: 1.6;
+}
+
+/* Content Area */
+.transactions-page__content {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.transactions-page__transaction-list {
+  background: var(--color-background-secondary);
+  border-radius: 16px;
+  padding: 1.5rem;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border);
+  margin: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+/* Transaction Details Modal */
+.transactions-page__modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 0, 0, 0.5);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
+  padding: 1rem;
+}
+
+.transactions-page__modal {
+  background: var(--color-background);
+  border-radius: 12px;
+  padding: 2rem;
+  max-width: 500px;
+  width: 100%;
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
+  border: 1px solid var(--color-border);
+  position: relative;
+}
+
+.transactions-page__modal h3 {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: var(--color-text-primary);
+  margin: 0 0 1.5rem 0;
+  padding-bottom: 0.75rem;
+  border-bottom: 1px solid var(--color-border);
+}
+
+.transactions-page__modal p {
+  margin: 0 0 1rem 0;
+  color: var(--color-text-secondary);
+  line-height: 1.5;
+}
+
+.transactions-page__modal p:last-of-type {
+  margin-bottom: 2rem;
+}
+
+.transactions-page__modal-close {
+  background: var(--color-primary);
+  color: white;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: all 0.15s ease;
+  width: 100%;
+}
+
+.transactions-page__modal-close:hover {
+  background: var(--color-primary-hover);
+  transform: translateY(-1px);
+}
+
+.transactions-page__modal-close:active {
+  transform: translateY(0);
+}
+
+/* Responsive Design */
+@media (max-width: 1024px) {
+  .transactions-page {
+    padding: 1rem;
+  }
+
+  .transactions-page__container {
+    gap: 1.5rem;
+  }
+
+  .transactions-page__title {
+    font-size: 2rem;
+  }
+
+  .transactions-page__transaction-list {
+    padding: 1.25rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .transactions-page {
+    padding: 0.75rem;
+  }
+
+  .transactions-page__container {
+    gap: 1rem;
+  }
+
+  .transactions-page__header {
+    padding: 1.5rem 0;
+  }
+
+  .transactions-page__title {
+    font-size: 1.75rem;
+  }
+
+  .transactions-page__subtitle {
+    font-size: 1rem;
+  }
+
+  .transactions-page__transaction-list {
+    padding: 0.75rem;
+    border-radius: 12px;
+  }
+
+  .transactions-page__modal {
+    padding: 1.5rem;
+    margin: 1rem;
+  }
+
+  .transactions-page__modal h3 {
+    font-size: 1.25rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .transactions-page {
+    padding: 0.5rem 0.25rem;
+  }
+
+  .transactions-page__header {
+    padding: 1rem 0;
+  }
+
+  .transactions-page__title {
+    font-size: 1.5rem;
+  }
+
+  .transactions-page__subtitle {
+    font-size: 0.9rem;
+  }
+
+  .transactions-page__transaction-list {
+    padding: 0.5rem;
+    border-radius: 8px;
+  }
+
+  .transactions-page__modal {
+    padding: 1rem;
+    margin: 0.5rem;
+  }
+}
+
+/* Extra small screens */
+@media (max-width: 360px) {
+  .transactions-page {
+    padding: 0.375rem 0.125rem;
+  }
+
+  .transactions-page__container {
+    gap: 0.75rem;
+  }
+
+  .transactions-page__header {
+    padding: 0.75rem 0;
+  }
+
+  .transactions-page__title {
+    font-size: 1.375rem;
+  }
+
+  .transactions-page__subtitle {
+    font-size: 0.8125rem;
+  }
+
+  .transactions-page__transaction-list {
+    padding: 0.375rem;
+    border-radius: 6px;
+  }
+
+  .transactions-page__modal {
+    padding: 0.75rem;
+    margin: 0.375rem;
+  }
+
+  .transactions-page__modal h3 {
+    font-size: 1.125rem;
+  }
+
+  .transactions-page__modal p {
+    font-size: 0.875rem;
+  }
+
+  .transactions-page__modal-close {
+    padding: 0.625rem 1.25rem;
+    font-size: 0.875rem;
+  }
+}
+
+/* Loading States */
+.transactions-page--loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+/* Error States */
+.transactions-page--error {
+  border-color: var(--color-error);
+}
+
+/* Focus Management */
+.transactions-page__modal-overlay:focus-within {
+  outline: none;
+}
+
+.transactions-page__modal-close:focus {
+  outline: 2px solid var(--color-primary);
+  outline-offset: 2px;
+}
+
+/* Animation for modal */
+.transactions-page__modal-overlay {
+  animation: fadeIn 0.2s ease-out;
+}
+
+.transactions-page__modal {
+  animation: slideIn 0.3s ease-out;
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes slideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .transactions-page__transaction-list {
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+  }
+
+  .transactions-page__modal {
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
+  }
+}

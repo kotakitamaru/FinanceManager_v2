@@ -11,6 +11,8 @@ export class TransactionRepository extends BaseRepository {
     accountId?: number,
     startDate?: string,
     endDate?: string,
+    sortBy?: string,
+    sortOrder?: string,
     userId?: number
   ): Promise<{
     transactions: TransactionResponse[];
@@ -55,6 +57,17 @@ export class TransactionRepository extends BaseRepository {
     });
     const total = parseInt((totalResult[0] as any).count);
 
+    // Build ORDER BY clause based on sortBy and sortOrder parameters
+    let orderByClause = 'ORDER BY ';
+    const validSortFields = ['id', 'amount', 'date', 'category_id', 'account_id', 'create_date', 'update_date'];
+    const validSortOrders = ['ASC', 'DESC'];
+    
+    // Validate sortBy parameter
+    const sortField = sortBy && validSortFields.includes(sortBy) ? sortBy : 'id';
+    const sortDirection = sortOrder && validSortOrders.includes(sortOrder.toUpperCase()) ? sortOrder.toUpperCase() : 'DESC';
+    
+    orderByClause += `${sortField} ${sortDirection}`;
+
     const query = `
       SELECT id,
              amount,
@@ -65,7 +78,7 @@ export class TransactionRepository extends BaseRepository {
              create_date as "createDate",
              update_date as "updateDate"
       FROM transactions ${whereClause}
-      ORDER BY id DESC LIMIT $${params.length + 1} OFFSET $${params.length + 2}
+      ${orderByClause} LIMIT $${params.length + 1} OFFSET $${params.length + 2}
     `;
 
     const result = await conn.query(query, {
@@ -235,11 +248,13 @@ export class TransactionRepository extends BaseRepository {
   async findByAccountId(
     accountId: number,
     page: number = 1,
-    limit: number = 10
+    limit: number = 10,
+    sortBy?: string,
+    sortOrder?: string
   ): Promise<{
     transactions: TransactionResponse[];
     total: number;
   }> {
-    return this.findAll(page, limit, undefined, accountId);
+    return this.findAll(page, limit, undefined, accountId, undefined, undefined, sortBy, sortOrder);
   }
 }

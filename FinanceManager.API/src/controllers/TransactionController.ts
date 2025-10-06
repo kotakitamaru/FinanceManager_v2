@@ -23,11 +23,13 @@ export class TransactionController extends BaseController {
     @Query() accountId?: number,
     @Query() startDate?: string,
     @Query() endDate?: string,
+    @Query() sortBy?: string,
+    @Query() sortOrder?: string,
     @Request() req?: AuthenticatedRequest
   ): Promise<{ transactions: TransactionResponse[]; total: number; page: number; limit: number }> {
     try {
       const userId = req?.user?.id;
-      return await this.transactionService.getTransactions(page, limit, categoryId, accountId, startDate, endDate, userId);
+      return await this.transactionService.getTransactions(page, limit, categoryId, accountId, startDate, endDate, sortBy, sortOrder, userId);
     } catch (error) {
       return this.handleError(error);
     }
