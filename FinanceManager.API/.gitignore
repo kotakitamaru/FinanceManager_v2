@@ -154,3 +154,4 @@ build/
 
 # TSOA generated files
 src/routes/routes.generated.ts
+/docker.env
